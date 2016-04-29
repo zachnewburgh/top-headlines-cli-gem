@@ -1,5 +1,2 @@
-require "top_headlines/version"
-
-module TopHeadlines
-  # Your code goes here...
-end
+require_relative "./top_headlines/version"
+require_relative "./top_headlines/cli"
