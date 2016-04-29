@@ -8,8 +8,8 @@ class TopHeadlines::CLI
   def menu
     puts "Which source do you want to view?"
     input = gets.strip.upcase
-    if input == "CNN"
-      puts "\n*** CNN ***"
+    if TopHeadlines::Source.all.keys.include?(input)
+      puts "\n*** #{input} ***"
       TopHeadlines::Source.scrape_headlines(input).each_with_index do |headline, index|
         puts "#{index + 1}. #{headline}"
       end
@@ -17,8 +17,12 @@ class TopHeadlines::CLI
 
       puts "Select article number to open."
       num = gets.strip.to_i
-      url = TopHeadlines::Source.scrape_urls(input)[num-1]
-      system("open", url)
+      while num > 0
+        url = TopHeadlines::Source.scrape_urls(input)[num-1]
+        system("open", url)
+        puts "Select another article number to open."
+        num = gets.strip.to_i
+      end
     else
       puts "error"
     end
