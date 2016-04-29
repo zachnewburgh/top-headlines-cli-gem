@@ -14,11 +14,15 @@ class TopHeadlines::CLI
   end
 
   def menu
-    puts "Which source do you want to view?"
+    puts "Which source do you want to view? Alternatively, type 'all' to view all headlines or 'exit' to exit!"
     input = nil
     while input != "EXIT"
       input = gets.strip.upcase
-      if TopHeadlines::Source.all.keys.include?(input)
+      if input == "ALL"
+        puts "\n"
+        TopHeadlines::Source.all_headlines
+        puts "\nSelect a source or type 'exit' to exit."
+      elsif TopHeadlines::Source.all.keys.include?(input)
         puts "\n*** #{input} ***"
         TopHeadlines::Source.scrape_headlines(input).each_with_index do |headline, index|
           puts "#{index + 1}. #{headline}"
