@@ -14,6 +14,11 @@ class TopHeadlines::CLI
         puts "#{index + 1}. #{headline}"
       end
       puts "\n"
+
+      puts "Select article number to open."
+      num = gets.strip.to_i
+      url = TopHeadlines::Source.scrape_urls(input)[num-1]
+      system("open", url)
     else
       puts "error"
     end
