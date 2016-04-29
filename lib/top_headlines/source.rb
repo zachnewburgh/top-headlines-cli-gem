@@ -6,7 +6,11 @@ class TopHeadlines::Source
       headlines_selector: "div.column.zn__column--idx-1 span.cd__headline-text",
       urls_selector: "div.column.zn__column--idx-1"
       },
-    "MSNBC" => "http://www.msnbc.com/"
+    "MSNBC" => {
+      url: "http://www.msnbc.com/",
+      headlines_selector: "span.featured-slider-menu__item__link__title",
+      urls_selector: "ul.featured-slider-menu"
+    }
   }
 
   def self.all
