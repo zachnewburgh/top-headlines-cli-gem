@@ -1,7 +1,14 @@
 class TopHeadlines::CLI
 
   def call
-    puts "Welcome to TopHeadlines! :)"
+    puts " ---------------------------"
+    puts "| WELCOME TO TOP HEADLINES! |"
+    puts " ---------------------------"
+    puts "\n"
+    TopHeadlines::Source.all.keys.each do |source|
+      puts "*** #{source} ***"
+    end
+    puts "\n"
     menu
   end
 
@@ -17,12 +24,14 @@ class TopHeadlines::CLI
 
       puts "Select article number to open."
       num = gets.strip.to_i
+
       while num > 0
         url = TopHeadlines::Source.scrape_urls(input)[num-1]
         system("open", url)
         puts "Select another article number to open."
         num = gets.strip.to_i
       end
+
     else
       puts "error"
     end
