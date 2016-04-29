@@ -10,7 +10,7 @@ class TopHeadlines::CLI
     input = gets.strip.upcase
     if input == "CNN"
       puts "\n*** CNN ***"
-      TopHeadlines::Source.all[input].each_with_index do |headline, index|
+      TopHeadlines::Source.scrape_headlines(input).each_with_index do |headline, index|
         puts "#{index + 1}. #{headline}"
       end
       puts "\n"

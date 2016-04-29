@@ -1,11 +1,16 @@
 class TopHeadlines::Source
 
   SOURCES = {
-    "CNN" => ["Bernie Sanders surges in the polls.", "Facebook stock reaches record high."]
+    "CNN" => "http://www.cnn.com/"
   }
 
   def self.all
     SOURCES
   end
 
+  def self.scrape_headlines(source)
+    source = SOURCES[source]
+    doc = Nokogiri::HTML(open(source))
+    headlines = doc.css('div.column.zn__column--idx-1 span.cd__headline-text').map {|headline| headline.text}
+  end
 end
