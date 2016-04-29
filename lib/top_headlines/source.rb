@@ -4,4 +4,8 @@ class TopHeadlines::Source
     "CNN" => ["Bernie Sanders surges in the polls.", "Facebook stock reaches record high."]
   }
 
+  def self.all
+    SOURCES
+  end
+
 end

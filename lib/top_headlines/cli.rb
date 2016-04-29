@@ -9,11 +9,11 @@ class TopHeadlines::CLI
     puts "Which source do you want to view?"
     input = gets.strip.upcase
     if input == "CNN"
-      puts <<-DOC  
-*** CNN ***
-  1. Bernie Sanders surges in the polls.
-  2. Facebook stock reaches record high.
-      DOC
+      puts "\n*** CNN ***"
+      TopHeadlines::Source.all[input].each_with_index do |headline, index|
+        puts "#{index + 1}. #{headline}"
+      end
+      puts "\n"
     else
       puts "error"
     end
