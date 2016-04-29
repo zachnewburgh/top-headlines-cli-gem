@@ -4,6 +4,7 @@ class TopHeadlines::CLI
     puts " ---------------------------"
     puts "| WELCOME TO TOP HEADLINES! |"
     puts " ---------------------------"
+    puts "Reporting live as of #{Time.now.strftime("%l:%M %p %Z on %a, %b #{Time.now.strftime("%e").to_i.ordinalize}, %Y")}"
     puts "\n"
     TopHeadlines::Source.all.keys.each do |source|
       puts "*** #{source} ***"
