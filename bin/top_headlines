@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/top_headlines'
+
+TopHeadlines::CLI.new.call
