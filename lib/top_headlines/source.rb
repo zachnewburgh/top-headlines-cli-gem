@@ -1,7 +1,12 @@
 class TopHeadlines::Source
 
   SOURCES = {
-    "CNN" => "http://www.cnn.com/"
+    "CNN" => {
+      url: "http://www.cnn.com/",
+      headlines_selector: "div.column.zn__column--idx-1 span.cd__headline-text",
+      urls_selector: "div.column.zn__column--idx-1"
+      },
+    "MSNBC" => "http://www.msnbc.com/"
   }
 
   def self.all
@@ -10,13 +15,19 @@ class TopHeadlines::Source
 
   def self.scrape_headlines(source)
     source = SOURCES[source]
-    doc = Nokogiri::HTML(open(source))
-    headlines = doc.css('div.column.zn__column--idx-1 span.cd__headline-text').map {|headline| headline.text}
+    page_url = source[:url]
+    headlines_selector = source[:headlines_selector]
+
+    doc = Nokogiri::HTML(open(page_url))
+    headlines = doc.css(headlines_selector).map {|headline| headline.text}
   end
 
   def self.scrape_urls(source)
     source = SOURCES[source]
-    doc = Nokogiri::HTML(open(source))
-    urls = doc.css('div.column.zn__column--idx-1').children.css('a').map {|url| source + url.attribute('href').value}
+    page_url = source[:url]
+    urls_selector = source[:urls_selector]
+    
+    doc = Nokogiri::HTML(open(page_url))
+    urls = doc.css(urls_selector).children.css('a').map {|url| page_url + url.attribute('href').value}
   end
 end
