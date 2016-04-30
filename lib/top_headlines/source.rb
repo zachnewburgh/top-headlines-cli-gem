@@ -10,6 +10,21 @@ class TopHeadlines::Source
       url: "http://www.msnbc.com/",
       headlines_selector: "span.featured-slider-menu__item__link__title",
       urls_selector: "ul.featured-slider-menu"
+    },
+    "FOX" => {
+      url: "http://www.foxnews.com/",
+      headlines_selector: "section#trending li a",
+      urls_selector: "section#trending li"
+    },
+    "NYTIMES" => {
+      url: "http://www.nytimes.com/",
+      headlines_selector: "section#top-news h2.story-heading a",
+      urls_selector: "section#top-news h2.story-heading"
+    },
+    "BLOOMBERG" => {
+      url: "http://www.bloomberg.com/",
+      headlines_selector: "section.top-news-v3 h1 a",
+      urls_selector: "section.top-news-v3 h1"
     }
   }
 
@@ -18,7 +33,7 @@ class TopHeadlines::Source
   end
 
   def self.list_all_headlines
-    SOURCES.keys.each do |source|
+    SOURCES.keys.sort.each do |source|
       puts "*** #{source} ***"
       scrape_headlines(source)[0,5].each_with_index {|headline, index| puts "#{index+1}. #{headline}"}
       puts "\n"
@@ -31,7 +46,7 @@ class TopHeadlines::Source
     headlines_selector = source[:headlines_selector]
 
     doc = Nokogiri::HTML(open(page_url))
-    headlines = doc.css(headlines_selector).map {|headline| headline.text}
+    headlines = doc.css(headlines_selector).map {|headline| headline.text.strip}
   end
 
   def self.scrape_urls(source)

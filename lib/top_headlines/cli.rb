@@ -107,7 +107,7 @@ class TopHeadlines::CLI
   end
 
   def news_sources
-    TopHeadlines::Source.all.keys.each {|source| puts "*** #{source} ***"}
+    TopHeadlines::Source.all.keys.sort.each {|source| puts "*** #{source} ***"}
     puts "\n"
   end
 
