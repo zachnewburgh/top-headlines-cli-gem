@@ -11,11 +11,11 @@ class TopHeadlines::Source
       headlines_selector: "span.featured-slider-menu__item__link__title",
       urls_selector: "ul.featured-slider-menu"
     },
-    "FOX" => {
-      url: "http://www.foxnews.com/",
-      headlines_selector: "section#trending li a",
-      urls_selector: "section#trending li"
-    },
+    # "FOX" => {
+    #   url: "http://www.foxnews.com/",
+    #   headlines_selector: "section#trending li a",
+    #   urls_selector: "section#trending li"
+    # },
     "NYTIMES" => {
       url: "http://www.nytimes.com/",
       headlines_selector: "section#top-news h2.story-heading a",
@@ -46,7 +46,7 @@ class TopHeadlines::Source
     headlines_selector = source[:headlines_selector]
 
     doc = Nokogiri::HTML(open(page_url))
-    headlines = doc.css(headlines_selector).map {|headline| headline.text.strip}
+    headlines = doc.css(headlines_selector).map {|headline| headline.text}
   end
 
   def self.scrape_urls(source)

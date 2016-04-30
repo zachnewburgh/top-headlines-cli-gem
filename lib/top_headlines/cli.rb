@@ -1,5 +1,5 @@
 class TopHeadlines::CLI
-
+#
   def call
     system "clear"
     welcome_banner
@@ -50,7 +50,7 @@ class TopHeadlines::CLI
   end
 
   def open_headline_in_browser
-    puts "Select article number to open."
+    puts "Select headline number to open the full article in the browser."
     print "YOUR SELECTION: "
     @num = gets.strip.upcase
       while @num.to_i.between?(1,5)
@@ -63,7 +63,7 @@ class TopHeadlines::CLI
         system("open", url)
 
         sleep(1)
-        puts "\nSelect another article number to open."
+        puts "\nSelect another headline number to open full article in the browser."
         print "YOUR SELECTION: "
         @num = gets.strip.upcase
       end
