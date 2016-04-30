@@ -1,16 +1,16 @@
 class TopHeadlines::CLI
 
   def call
-    puts " ---------------------------"
-    puts "| WELCOME TO TOP HEADLINES! |"
-    puts " ---------------------------"
-    time
-    puts "\n"
-    TopHeadlines::Source.all.keys.each do |source|
-      puts "*** #{source} ***"
-    end
-    puts "\n"
-    menu
+    # puts " ---------------------------"
+    # puts "| WELCOME TO TOP HEADLINES! |"
+    # puts " ---------------------------"
+    # time
+    # puts "\n"
+    # TopHeadlines::Source.all.keys.each do |source|
+    #   puts "*** #{source} ***"
+    # end
+    # puts "\n"
+    # menu
     goodbye
   end
 
@@ -68,7 +68,7 @@ class TopHeadlines::CLI
   end
 
   def goodbye
-    puts "\nThanks for visiting – see you next time! :)"
+    puts "\nThanks for visiting – see you next time!"
 
     puts <<-DOC
                                                                                                     
@@ -104,10 +104,15 @@ class TopHeadlines::CLI
                                               ``..--------------------...`                          
                                                   ```.....----......``                              
                                                                                                     
-                                                                                                   
-
-    DOC
     
-    puts "Copyright © 2016 Zach Newburgh"
+
+    Image: VectorStock (https://www.vectorstock.com/royalty-free-vector/bye-goodbye-vector-6122218)
+    ASCII Image Conversion: Patrik Roos (http://www.text-image.com/convert/ascii.html)
+  
+    TopHeadlines created by Zach Newburgh (http://www.zachnewburgh.com/)
+    Copyright © 2016 Zach Newburgh
+    
+    DOC
+
   end
 end
