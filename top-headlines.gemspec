@@ -1,10 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'top_headlines/version'
+require 'top-headlines/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "top_headlines"
+  spec.name          = "top-headlines"
   spec.version       = TopHeadlines::VERSION
   spec.authors       = ["zachnewburgh"]
   spec.email         = ["zach.newburgh@gmail.com"]

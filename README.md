@@ -7,7 +7,7 @@ This gem allows users to view the top headlines from major news sources. It allo
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'top_headlines'
+gem 'top-headlines'
 ```
 
 And then execute:
@@ -16,11 +16,11 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install top_headlines
+    $ gem install top-headlines
 
 ## Usage
 
-In lib/top_headlines/source.rb, users will find a SOURCES hash. Users may add their own favorite news sources to the hash, so that the gem dynamically scrapes even more headlines.
+In lib/top-headlines/source.rb, users will find a SOURCES hash. Users may add their own favorite news sources to the hash, so that gethe gem dynamically scrapes even more headlines.
 
 If you'd like to view how I made the gem, here's a set of videos that captures almost all of it:
   1) https://drive.google.com/file/d/0B-xsMiWmDyyzcGk3MmlTc0xQOXM/view?usp=sharing
@@ -36,7 +36,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/top_headlines. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/zachnewburgh/top-headlines-cli-gem. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
