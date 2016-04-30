@@ -1,8 +1,14 @@
 # TopHeadlines
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/top_headlines`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem allows users to view the top headlines from major news sources. Users can then open the headlines from the command line.
 
-TODO: Delete this and the text above, and describe your gem
+In lib/top_headlines/source.rb, users will find a SOURCES hash. Users may add their own favorite news sources to the hash, so that the gem dynamically scrapes even more headlines.
+
+If you'd like to view how I made the gem, here's a set of videos that captures almost all of it:
+  1) https://drive.google.com/file/d/0B-xsMiWmDyyzcGk3MmlTc0xQOXM/view?usp=sharing
+  2) https://drive.google.com/file/d/0B-xsMiWmDyyzNDFyS01icFMtams/view?usp=sharing
+  3) https://drive.google.com/file/d/0B-xsMiWmDyyzU0VGNGJ5QkpaOUU/view?usp=sharing
+  4) https://drive.google.com/file/d/0B-xsMiWmDyyzbEdzX0ZlOVcwM2M/view?usp=sharing
 
 ## Installation
 
