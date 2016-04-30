@@ -18,12 +18,12 @@ class TopHeadlines::CLI
         system "clear"
         list_all_headlines_banner
         list_all_headlines
-        puts menu_input_request
+        puts request_input_full_menu
         print "YOUR SELECTION: "
       elsif @input == "SOURCES"
         news_sources_banner
         news_sources
-        puts menu_input_request
+        puts request_input_full_menu
         print "YOUR SELECTION: "
       elsif TopHeadlines::Source.all.keys.include?(@input)
         system "clear"
@@ -79,12 +79,12 @@ class TopHeadlines::CLI
     end
   end
 
-  def menu_input_request
+  def request_input_full_menu
     "Select a source, type 'sources' to view sources, type 'all' to view all headlines, or type 'exit' to exit."
   end
 
   def invalid_entry
-    puts "\nINVALID: #{menu_input_request.downcase}"
+    puts "\nINVALID: #{request_input_full_menu.downcase}"
     sleep(1)
     news_sources_banner
     news_sources
