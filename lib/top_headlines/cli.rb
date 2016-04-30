@@ -1,6 +1,7 @@
 class TopHeadlines::CLI
 
   def call
+    system "clear"
     welcome_banner
     news_sources
     menu
@@ -17,11 +18,13 @@ class TopHeadlines::CLI
         system "clear"
         all_headlines_banner
         all_headlines
-        menu_input_request
+        puts menu_input_request
+        print "YOUR SELECTION: "
       elsif @input == "SOURCES"
         news_sources_banner
         news_sources
-        menu_input_request
+        puts menu_input_request
+        print "YOUR SELECTION: "
       elsif TopHeadlines::Source.all.keys.include?(@input)
         system "clear"
         source_headline_listing
@@ -51,36 +54,41 @@ class TopHeadlines::CLI
   def open_article
     puts "Select article number to open."
     print "YOUR SELECTION: "
-    num = gets.strip.to_i
+    num = gets.strip
 
-    while num > 0
-      url = TopHeadlines::Source.scrape_urls(@input)[num-1]
-      headline = TopHeadlines::Source.scrape_headlines(@input)[num-1]
-      
-      puts "\nYou selected the #{num.ordinalize} headline: '#{headline}'."
-      puts "Opening..."
+    if num.upcase == "EXIT"
+      @input = num.upcase
+    else 
+      num = num.to_i
+      while num.between?(1,5)
+        url = TopHeadlines::Source.scrape_urls(@input)[num-1]
+        headline = TopHeadlines::Source.scrape_headlines(@input)[num-1]
+        
+        puts "\nYou selected the #{num.ordinalize} headline: '#{headline}'."
+        puts "Opening..."
 
-      sleep(1)
-      system("open", url)
+        sleep(1)
+        system("open", url)
 
-      sleep(3)
-      puts "\nSelect another article number to open."
-      print "YOUR SELECTION: "
-      num = gets.strip.to_i
+        sleep(3)
+        puts "\nSelect another article number to open."
+        print "YOUR SELECTION: "
+        num = gets.strip.to_i
+      end
+      invalid_entry
     end
-    invalid_entry
   end
 
   def menu_input_request
-    puts "\nSelect a source, type 'sources' to view sources, type 'all' to view all headlines, or type 'exit' to exit."
-    print "YOUR SELECTION: "
+    "Select a source, type 'sources' to view sources, type 'all' to view all headlines, or type 'exit' to exit."
   end
 
   def invalid_entry
+    puts "\nINVALID: #{menu_input_request.downcase}"
+    sleep(1)
     news_sources_banner
     news_sources
-    puts "INVALID: #{menu_input_request.downcase}"
-    print "\nYOUR SELECTION: "
+    print "YOUR SELECTION: "
   end
 
   def welcome_banner
