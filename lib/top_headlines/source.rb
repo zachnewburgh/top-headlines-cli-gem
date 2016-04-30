@@ -20,9 +20,7 @@ class TopHeadlines::Source
   def self.list_all_headlines
     SOURCES.keys.each do |source|
       puts "*** #{source} ***"
-      scrape_headlines(source)[0,5].each_with_index do |headline, index|
-        puts "#{index+1}. #{headline}"
-      end
+      scrape_headlines(source)[0,5].each_with_index {|headline, index| puts "#{index+1}. #{headline}"}
       puts "\n"
     end
   end

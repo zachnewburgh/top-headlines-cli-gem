@@ -45,9 +45,7 @@ class TopHeadlines::CLI
   def list_headlines_from_source
     puts "\n*** #{@input} ***"
     time
-    TopHeadlines::Source.scrape_headlines(@input)[0,5].each_with_index do |headline, index|
-      puts "#{index + 1}. #{headline}"
-    end
+    TopHeadlines::Source.scrape_headlines(@input)[0,5].each_with_index {|headline, index| puts "#{index + 1}. #{headline}"}
     puts "\n"
   end
 
@@ -116,9 +114,7 @@ class TopHeadlines::CLI
   end
 
   def news_sources
-    TopHeadlines::Source.all.keys.each do |source|
-      puts "*** #{source} ***"
-    end
+    TopHeadlines::Source.all.keys.each {|source| puts "*** #{source} ***"}
     puts "\n"
   end
 
