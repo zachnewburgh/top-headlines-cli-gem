@@ -1,7 +1,6 @@
 class TopHeadlines::CLI
 
   def call
-    system "clear"
     welcome_banner
     news_sources
     menu
@@ -15,7 +14,6 @@ class TopHeadlines::CLI
     while @input != "EXIT" && @num != "EXIT"
       @input = gets.strip.upcase 
       if @input == "ALL"
-        system "clear"
         list_all_headlines_banner
         list_all_headlines
         puts request_input_full_menu
@@ -26,7 +24,6 @@ class TopHeadlines::CLI
         puts request_input_full_menu
         print "YOUR SELECTION: "
       elsif TopHeadlines::Source.all.keys.include?(@input)
-        system "clear"
         list_headlines_from_source
         open_headline_in_browser
       elsif @input != "EXIT"
@@ -38,6 +35,7 @@ class TopHeadlines::CLI
   end
 
   def welcome_banner
+    system "clear"
     puts " --------------------------- "
     puts "| WELCOME TO TOP HEADLINES! |"
     puts " --------------------------- "
@@ -55,6 +53,7 @@ class TopHeadlines::CLI
   end
 
   def list_all_headlines_banner
+    system "clear"
     puts " -------------------------------"
     puts "| TOP HEADLINES & BREAKING NEWS |"
     puts " -------------------------------"
@@ -76,6 +75,7 @@ class TopHeadlines::CLI
   end
 
   def list_headlines_from_source
+    system "clear"
     puts "\n*** #{@input} ***"
     time
     TopHeadlines::Source.scrape_headlines(@input)[0,5].each_with_index {|headline, index| puts "#{index + 1}. #{headline}"}
@@ -88,8 +88,8 @@ class TopHeadlines::CLI
     @num = gets.strip.upcase
       while @num.to_i.between?(1,5)
         headline = TopHeadlines::Source.scrape_headlines(@input)[@num.to_i-1]
-        puts "\nYou selected the #{@num.to_i.ordinalize} headline: '#{headline}'."
-        puts "Opening..."
+        puts "\n=> You selected the #{@num.to_i.ordinalize} headline: '#{headline}'."
+        puts "=> Opening..."
 
         sleep(2)
         url = TopHeadlines::Source.scrape_urls(@input)[@num.to_i-1]
@@ -104,7 +104,7 @@ class TopHeadlines::CLI
   end
 
   def invalid_entry
-    puts "\nINVALID: #{request_input_full_menu.downcase}"
+    puts "\n=> INVALID SELECTION: #{request_input_full_menu}"
     sleep(1)
     news_sources_banner
     news_sources
