@@ -12,7 +12,7 @@ class TopHeadlines::CLI
     puts "Which source do you want to view? Alternatively, type 'all' to view all headlines or 'exit' to exit!"
     print "YOUR SELECTION: "
     @input = nil
-    while @input != "EXIT"
+    while @input != "EXIT" && @num != "EXIT"
       @input = gets.strip.upcase 
       if @input == "ALL"
         system "clear"
@@ -28,7 +28,7 @@ class TopHeadlines::CLI
       elsif TopHeadlines::Source.all.keys.include?(@input)
         system "clear"
         list_headlines_from_source
-        open_article
+        open_headline_in_browser
       elsif @input != "EXIT"
         invalid_entry
       else
@@ -49,32 +49,25 @@ class TopHeadlines::CLI
     puts "\n"
   end
 
-  def open_article
+  def open_headline_in_browser
     puts "Select article number to open."
     print "YOUR SELECTION: "
-    num = gets.strip
-
-    if num.upcase == "EXIT"
-      @input = num.upcase
-    else 
-      num = num.to_i
-      while num.between?(1,5)
-        url = TopHeadlines::Source.scrape_urls(@input)[num-1]
-        headline = TopHeadlines::Source.scrape_headlines(@input)[num-1]
-        
-        puts "\nYou selected the #{num.ordinalize} headline: '#{headline}'."
+    @num = gets.strip.upcase
+      while @num.to_i.between?(1,5)
+        headline = TopHeadlines::Source.scrape_headlines(@input)[@num.to_i-1]
+        puts "\nYou selected the #{@num.to_i.ordinalize} headline: '#{headline}'."
         puts "Opening..."
 
-        sleep(1)
+        sleep(2)
+        url = TopHeadlines::Source.scrape_urls(@input)[@num.to_i-1]
         system("open", url)
 
-        sleep(3)
+        sleep(1)
         puts "\nSelect another article number to open."
         print "YOUR SELECTION: "
-        num = gets.strip.to_i
+        @num = gets.strip.upcase
       end
-      invalid_entry
-    end
+    invalid_entry if @num != "EXIT"
   end
 
   def request_input_full_menu
