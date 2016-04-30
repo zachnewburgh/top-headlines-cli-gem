@@ -16,8 +16,8 @@ class TopHeadlines::CLI
       @input = gets.strip.upcase 
       if @input == "ALL"
         system "clear"
-        all_headlines_banner
-        all_headlines
+        list_all_headlines_banner
+        list_all_headlines
         puts menu_input_request
         print "YOUR SELECTION: "
       elsif @input == "SOURCES"
@@ -98,15 +98,15 @@ class TopHeadlines::CLI
     time
   end
 
-  def all_headlines_banner
+  def list_all_headlines_banner
     puts " -------------------------------"
     puts "| TOP HEADLINES & BREAKING NEWS |"
     puts " -------------------------------"
     time
   end
 
-  def all_headlines
-    TopHeadlines::Source.all_headlines
+  def list_all_headlines
+    TopHeadlines::Source.list_all_headlines
   end
 
   def news_sources_banner

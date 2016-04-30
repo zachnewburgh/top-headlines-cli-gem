@@ -17,7 +17,7 @@ class TopHeadlines::Source
     SOURCES
   end
 
-  def self.all_headlines
+  def self.list_all_headlines
     SOURCES.keys.each do |source|
       puts "*** #{source} ***"
       scrape_headlines(source)[0,5].each_with_index do |headline, index|
