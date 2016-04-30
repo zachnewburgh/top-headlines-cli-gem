@@ -36,12 +36,12 @@ class TopHeadlines::CLI
 
   def time
     puts "Reporting live as of #{Time.now.strftime("%l:%M %p %Z on %a, %b #{Time.now.strftime("%e").to_i.ordinalize}, %Y")}"
+    puts "\n"
   end
 
   def source_headline_listing
     puts "\n*** #{@input} ***"
     time
-    puts "\n"
     TopHeadlines::Source.scrape_headlines(@input)[0,5].each_with_index do |headline, index|
       puts "#{index + 1}. #{headline}"
     end
@@ -88,7 +88,6 @@ class TopHeadlines::CLI
     puts "| WELCOME TO TOP HEADLINES! |"
     puts " ---------------------------"
     time
-    puts "\n"
   end
 
   def all_headlines_banner
@@ -96,7 +95,6 @@ class TopHeadlines::CLI
     puts "| TOP HEADLINES & BREAKING NEWS |"
     puts " -------------------------------"
     time
-    puts "\n"
   end
 
   def all_headlines
