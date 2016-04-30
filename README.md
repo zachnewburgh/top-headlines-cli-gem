@@ -1,14 +1,6 @@
 # TopHeadlines
 
-This gem allows users to view the top headlines from major news sources. Users can then open the headlines from the command line.
-
-In lib/top_headlines/source.rb, users will find a SOURCES hash. Users may add their own favorite news sources to the hash, so that the gem dynamically scrapes even more headlines.
-
-If you'd like to view how I made the gem, here's a set of videos that captures almost all of it:
-  1) https://drive.google.com/file/d/0B-xsMiWmDyyzcGk3MmlTc0xQOXM/view?usp=sharing
-  2) https://drive.google.com/file/d/0B-xsMiWmDyyzNDFyS01icFMtams/view?usp=sharing
-  3) https://drive.google.com/file/d/0B-xsMiWmDyyzU0VGNGJ5QkpaOUU/view?usp=sharing
-  4) https://drive.google.com/file/d/0B-xsMiWmDyyzbEdzX0ZlOVcwM2M/view?usp=sharing
+This gem allows users to view the top headlines from major news sources. It allows users to open the headlines directly from the command line.
 
 ## Installation
 
@@ -28,7 +20,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+In lib/top_headlines/source.rb, users will find a SOURCES hash. Users may add their own favorite news sources to the hash, so that the gem dynamically scrapes even more headlines.
+
+If you'd like to view how I made the gem, here's a set of videos that captures almost all of it:
+  1) https://drive.google.com/file/d/0B-xsMiWmDyyzcGk3MmlTc0xQOXM/view?usp=sharing
+  2) https://drive.google.com/file/d/0B-xsMiWmDyyzNDFyS01icFMtams/view?usp=sharing
+  3) https://drive.google.com/file/d/0B-xsMiWmDyyzU0VGNGJ5QkpaOUU/view?usp=sharing
+  4) https://drive.google.com/file/d/0B-xsMiWmDyyzbEdzX0ZlOVcwM2M/view?usp=sharing
 
 ## Development
 
