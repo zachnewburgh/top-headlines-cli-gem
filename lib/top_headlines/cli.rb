@@ -27,7 +27,7 @@ class TopHeadlines::CLI
         print "YOUR SELECTION: "
       elsif TopHeadlines::Source.all.keys.include?(@input)
         system "clear"
-        source_headline_listing
+        list_headlines_from_source
         open_article
       elsif @input != "EXIT"
         invalid_entry
@@ -42,7 +42,7 @@ class TopHeadlines::CLI
     puts "\n"
   end
 
-  def source_headline_listing
+  def list_headlines_from_source
     puts "\n*** #{@input} ***"
     time
     TopHeadlines::Source.scrape_headlines(@input)[0,5].each_with_index do |headline, index|
