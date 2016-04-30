@@ -1,5 +1,5 @@
 class TopHeadlines::CLI
-#
+
   def call
     system "clear"
     welcome_banner
@@ -37,9 +37,42 @@ class TopHeadlines::CLI
     end
   end
 
+  def welcome_banner
+    puts " --------------------------- "
+    puts "| WELCOME TO TOP HEADLINES! |"
+    puts " --------------------------- "
+    time
+  end
+  
   def time
     puts "Reporting live as of #{Time.now.strftime("%l:%M %p %Z on %a, %b #{Time.now.strftime("%e").to_i.ordinalize}, %Y")}:"
     puts "\n"
+  end
+
+  def news_sources
+    TopHeadlines::Source.all.keys.sort.each {|source| puts "*** #{source} ***"}
+    puts "\n"
+  end
+
+  def list_all_headlines_banner
+    puts " -------------------------------"
+    puts "| TOP HEADLINES & BREAKING NEWS |"
+    puts " -------------------------------"
+    time
+  end
+
+  def list_all_headlines
+    TopHeadlines::Source.list_all_headlines
+  end
+
+  def request_input_full_menu
+    "Select a source, type 'sources' to view sources, type 'all' to view all headlines, or type 'exit' to exit."
+  end
+
+  def news_sources_banner
+    puts "\n"
+    puts "NEWS SOURCES"
+    puts "------------"
   end
 
   def list_headlines_from_source
@@ -70,45 +103,12 @@ class TopHeadlines::CLI
     invalid_entry if @num != "EXIT"
   end
 
-  def request_input_full_menu
-    "Select a source, type 'sources' to view sources, type 'all' to view all headlines, or type 'exit' to exit."
-  end
-
   def invalid_entry
     puts "\nINVALID: #{request_input_full_menu.downcase}"
     sleep(1)
     news_sources_banner
     news_sources
     print "YOUR SELECTION: "
-  end
-
-  def welcome_banner
-    puts " --------------------------- "
-    puts "| WELCOME TO TOP HEADLINES! |"
-    puts " --------------------------- "
-    time
-  end
-
-  def list_all_headlines_banner
-    puts " -------------------------------"
-    puts "| TOP HEADLINES & BREAKING NEWS |"
-    puts " -------------------------------"
-    time
-  end
-
-  def list_all_headlines
-    TopHeadlines::Source.list_all_headlines
-  end
-
-  def news_sources_banner
-    puts "\n"
-    puts "NEWS SOURCES"
-    puts "------------"
-  end
-
-  def news_sources
-    TopHeadlines::Source.all.keys.sort.each {|source| puts "*** #{source} ***"}
-    puts "\n"
   end
 
   def goodbye
