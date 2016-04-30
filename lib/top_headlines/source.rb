@@ -42,6 +42,6 @@ class TopHeadlines::Source
     urls_selector = source[:urls_selector]
     
     doc = Nokogiri::HTML(open(page_url))
-    urls = doc.css(urls_selector).children.css('a').map {|url| page_url + url.attribute('href').value}
+    urls = doc.css(urls_selector).children.css('a').map {|url| url.attribute('href').value[0] == 'h' ? url.attribute('href').value : page_url + url.attribute('href').value}
   end
 end
