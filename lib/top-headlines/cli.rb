@@ -99,8 +99,9 @@ class TopHeadlines::CLI
         puts "\nSelect another headline number to open full article in the browser."
         print "YOUR SELECTION: "
         @num = gets.strip.upcase
+        @input = @num if @num == "EXIT"
       end
-    invalid_entry if @num != "EXIT"
+    invalid_entry unless @input == "EXIT"
   end
 
   def invalid_entry
