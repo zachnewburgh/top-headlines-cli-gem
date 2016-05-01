@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-In lib/top-headlines/source.rb, users will find a SOURCES hash. Users may add their own favorite news sources to the hash, so that gethe gem dynamically scrapes even more headlines.
+In lib/top-headlines/source.rb, users will find a SOURCES hash. Users may add their own favorite news sources to the hash, so that the gem dynamically scrapes even more headlines.
 ```
 If you'd like to view how I made the gem, here's a set of videos that captures almost all of it:
   1) https://drive.google.com/file/d/0B-xsMiWmDyyzcGk3MmlTc0xQOXM/view?usp=sharing
