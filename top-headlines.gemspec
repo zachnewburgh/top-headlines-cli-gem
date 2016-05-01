@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["zachnewburgh"]
   spec.email         = ["zach.newburgh@gmail.com"]
 
-  spec.summary       = %q{This gem allows users to view the top headlines from major news sources. It allows users to open the headlines directly from the command line.}
+  spec.summary       = %q{This gem allows users to view the top headlines from major news sources. Users can open the headlines directly from the command line for articles from Bloomberg, CNN, Forbes, Fox News, The Guardian, Huffington Post, MSNBC, New York Times, and Wall Street Journal.}
   spec.homepage      = "https://github.com/zachnewburgh/top-headlines-cli-gem"
   spec.license       = "MIT"
 
