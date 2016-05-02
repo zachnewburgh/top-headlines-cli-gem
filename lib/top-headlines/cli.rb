@@ -136,11 +136,11 @@ class TopHeadlines::CLI
                        ``..------...`                                                                    
 
 
-    Image: VectorStock (https://www.vectorstock.com/royalty-free-vector/bye-goodbye-vector-6122218)
-    ASCII Image Conversion: Patrik Roos (http://www.text-image.com/convert/ascii.html)
+Image: VectorStock (https://www.vectorstock.com/royalty-free-vector/bye-goodbye-vector-6122218)
+ASCII Image Conversion: Patrik Roos (http://www.text-image.com/convert/ascii.html)
   
-    TopHeadlines Gem made by Zach Newburgh (http://www.zachnewburgh.com/)
-    Copyright © 2016 Zach Newburgh
+TopHeadlines Gem made by Zach Newburgh (http://www.zachnewburgh.com/)
+Copyright © 2016 Zach Newburgh
     
     DOC
 

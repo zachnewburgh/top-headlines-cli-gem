@@ -69,8 +69,8 @@ class TopHeadlines::Source
     },      
     "WASHINGTON POST" => {
       url: "https://www.washingtonpost.com/",
-      headlines_selector: "section#main-content a",
-      urls_selector: "section#main-content",
+      headlines_selector: "section#main-content div[class*='headline'] a",
+      urls_selector: "section#main-content div[class*='headline']",
       child_selector: "a"
     },  
     "BBC" => {
@@ -78,6 +78,18 @@ class TopHeadlines::Source
       headlines_selector: "div.column--primary span.title-link__title-text",
       urls_selector: "div.column--primary",  
       child_selector: "a.title-link"
+    }, 
+    "THE DAILY BEAST" => {
+      url: "http://www.thedailybeast.com/",
+      headlines_selector: "li.cheat h3",
+      urls_selector: "li.cheat",  
+      child_selector: "a:nth-child(2)"
+    },
+    "YAHOO" => {
+      url: "https://www.yahoo.com/news",
+      headlines_selector: "div#mrt-node-Col1-1-WideHero h3",
+      urls_selector: "div#mrt-node-Col1-1-WideHero",
+      child_selector: "a[class*='D(b)']"
     },  
     # "REDDIT" => { ## 429 Error
     #   url: "https://www.reddit.com/r/news/",
@@ -87,16 +99,10 @@ class TopHeadlines::Source
     # },
     # "CBS" => {
     #   url: "http://www.cbsnews.com/",
-    #   headlines_selector: "div.col-5.nocontent h3.title",
-    #   urls_selector: "div.col-5.nocontent",
-    #   child_selector: "a" ## NEEDS WORK – only select a child of parent h3.title
-    # },
-    # "YAHOO" => {
-    #   url: "https://www.yahoo.com/news/",
-    #   headlines_selector: "div#mrt-node-Col1-1-WideHero h3",
-    #   urls_selector: "div#mrt-node-Col1-1-WideHero",
-    #   child_selector: "a" ## NEEDS WORK – only select a child of parent h3
-    # },        
+    #   headlines_selector: "div.col-5.nocontent li.item-full-lead h3.title",
+    #   urls_selector: "div.col-5.nocontent li.item-full-lead",
+    #   child_selector: "a:first-child" ## NEEDS WORK – only select first parent h3.title
+    # },      
   }
 
   def self.all
