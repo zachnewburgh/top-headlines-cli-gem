@@ -91,6 +91,18 @@ class TopHeadlines::Source
       urls_selector: "div#mrt-node-Col1-1-WideHero",
       child_selector: "a[class*='D(b)']"
     },  
+    "AP" => {
+      url: "http://bigstory.ap.org",
+      headlines_selector: "h5.entry-title.node-title.title",
+      urls_selector: "h5.entry-title.node-title.title",
+      child_selector: "a:first-child"
+    }, 
+    # "REUTERS" => {
+    #   url: "http://www.reuters.com/news",
+    #   headlines_selector: "div.column1.gridPanel.grid8 div.moduleBody :not(div.photo) a", # NEED TO ACCOUNT FOR :not(span a) at same level as a
+    #   urls_selector: "div.column1.gridPanel.grid8 div.moduleBody :not(div.photo)",
+    #   child_selector: "a"
+    # }, 
     # "REDDIT" => { ## 429 Error
     #   url: "https://www.reddit.com/r/news/",
     #   headlines_selector: "p.title a.title.may-blank",
