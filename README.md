@@ -1,6 +1,6 @@
 # TopHeadlines
 
-This gem allows users to view the top headlines from major news sources. Users can open the headlines directly from the command line. Functionality includes: Bloomberg, CNN, Forbes, Fox News, The Guardian, Huffington Post, MSNBC, New York Times, and Wall Street Journal.
+This gem allows users to view the top headlines from major news sources. Users can open the headlines directly from the command line. Functionality includes: BBC, Bloomberg, CNN, FiveThirtyEight, Forbes, Fox News, The Guardian, Huffington Post, MSNBC, New York Times, Politico, Wall Street Journal, and Washington Post.
 
 ## Installation
 

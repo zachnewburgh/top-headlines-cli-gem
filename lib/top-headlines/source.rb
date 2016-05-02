@@ -54,19 +54,37 @@ class TopHeadlines::Source
       headlines_selector: "a.wsj-headline-link",
       urls_selector: "div.cb-col",
       child_selector: "a.wsj-headline-link"
-    },   
+    },
+    "POLITICO" => {
+      url: "http://www.politico.com/",
+      headlines_selector: "ul.headline-list a",
+      urls_selector: "ul.headline-list",
+      child_selector: "a"
+    },
+    "FIVETHIRTYEIGHT" => {
+      url: "http://fivethirtyeight.com/",
+      headlines_selector: "div#primary h3 a",
+      urls_selector: "div#primary h3",
+      child_selector: "a"
+    },      
+    "WASHINGTON POST" => {
+      url: "https://www.washingtonpost.com/",
+      headlines_selector: "section#main-content a",
+      urls_selector: "section#main-content",
+      child_selector: "a"
+    },  
+    "BBC" => {
+      url: "http://www.bbc.com/news",
+      headlines_selector: "div.column--primary span.title-link__title-text",
+      urls_selector: "div.column--primary",  
+      child_selector: "a.title-link"
+    },  
     # "REDDIT" => { ## 429 Error
     #   url: "https://www.reddit.com/r/news/",
     #   headlines_selector: "p.title a.title.may-blank",
     #   urls_selector: "p.title",
     #   child_selector: "a"
     # },
-    # "BBC" => {
-    #   url: "http://www.bbc.com/news",
-    #   headlines_selector: "div.column--primary span.title-link__title-text",
-    #   urls_selector: "div.column--primary",  
-    #   child_selector: "a.title-link" ## NEEDS WORK returns e.g. /news/world-middle-east-36180184
-    # },  
     # "CBS" => {
     #   url: "http://www.cbsnews.com/",
     #   headlines_selector: "div.col-5.nocontent h3.title",
@@ -99,6 +117,7 @@ class TopHeadlines::Source
     headlines_selector = source[:headlines_selector]
 
     doc = Nokogiri::HTML(open(page_url))
+
     headlines = doc.css(headlines_selector).map {|headline| headline.text.gsub("â", "'").gsub(/\n/,"").gsub(/\t/,"").strip}
   end
 
@@ -109,6 +128,7 @@ class TopHeadlines::Source
     child_selector = source[:child_selector]
     
     doc = Nokogiri::HTML(open(page_url))
+    page_url = page_url[0...-5] if page_url[-4...-1]+page_url[-1] == "news" ### BBC CORNER CASE
     urls = doc.css(urls_selector).children.css(child_selector).map {|url| url.attribute('href').value[0] == 'h' ? url.attribute('href').value : page_url + url.attribute('href').value}
   end
 end
