@@ -16,6 +16,7 @@ class TopHeadlines::CLI
       if @input == "ALL"
         list_all_headlines_banner
         list_all_headlines
+        # open_headline_in_browser
         puts request_input_full_menu
         print "YOUR SELECTION: "
       elsif @input == "SOURCES"
@@ -86,20 +87,36 @@ class TopHeadlines::CLI
     puts "Select headline number to open the full article in the browser."
     print "YOUR SELECTION: "
     @num = gets.strip.upcase
-      while @num.to_i.between?(1,5)
-        headline = TopHeadlines::Source.scrape_headlines(@input)[@num.to_i-1]
-        puts "\n=> You selected the #{@num.to_i.ordinalize} headline: '#{headline}'."
-        puts "=> Opening..."
+      while @num.to_i.between?(1,5) # Need to figure out @num how to make it less than headline counter (if @input == "ALL")
+        if @input == "ALL"
+          @input == TopHeadlines::Source.all.keys[@num/3]
+          headline = TopHeadlines::Source.scrape_headlines(@input)[@num.to_i-1]
+          puts "=> Opening..."
 
-        sleep(2)
-        url = TopHeadlines::Source.scrape_urls(@input)[@num.to_i-1]
-        system("open", url)
+          sleep(2)
+          url = TopHeadlines::Source.scrape_urls(@input)[@num.to_i-1]
+          system("open", url)
 
-        sleep(1)
-        puts "\nSelect another headline number to open full article in the browser."
-        print "YOUR SELECTION: "
-        @num = gets.strip.upcase
-        @input = @num if @num == "EXIT"
+          sleep(1)
+          puts "\nSelect another headline number to open full article in the browser."
+          print "YOUR SELECTION: "
+          @num = gets.strip.upcase
+          @input = @num if @num == "EXIT"
+        else
+          headline = TopHeadlines::Source.scrape_headlines(@input)[@num.to_i-1]
+          puts "\n=> You selected the #{@num.to_i.ordinalize} headline: '#{headline}'."
+          puts "=> Opening..."
+
+          sleep(2)
+          url = TopHeadlines::Source.scrape_urls(@input)[@num.to_i-1]
+          system("open", url)
+
+          sleep(1)
+          puts "\nSelect another headline number to open full article in the browser."
+          print "YOUR SELECTION: "
+          @num = gets.strip.upcase
+          @input = @num if @num == "EXIT"
+        end
       end
     invalid_entry unless @input == "EXIT"
   end
