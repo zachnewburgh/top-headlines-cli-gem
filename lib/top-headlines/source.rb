@@ -122,10 +122,9 @@ class TopHeadlines::Source
   end
 
   def self.list_all_headlines
-    article_sum = 0  
     SOURCES.keys.sort.each do |source|
       puts "*** #{source} ***"
-      scrape_headlines(source)[0,5].each {|headline| puts "#{article_sum+1}. #{headline}"; article_sum += 1}
+      scrape_headlines(source)[0,5].each_with_index {|headline, index| puts "#{index+1}. #{headline}"}
       puts "\n"
     end
   end

@@ -21,9 +21,7 @@ class TopHeadlines::CLI
       if @input == "ALL"
         list_all_headlines_banner
         list_all_headlines
-        # open_headline_in_browser
-        puts request_input_full_menu
-        print "YOUR SELECTION: "
+        all_headlines_open_in_browser
       elsif @input == "SOURCES"
         news_sources_banner
         news_sources
@@ -31,7 +29,7 @@ class TopHeadlines::CLI
         print "YOUR SELECTION: "
       elsif source_includes?(@input)
         list_headlines_from_source
-        open_headline_in_browser
+        headlines_from_source_open_in_browser
       elsif @input != "EXIT"
         invalid_entry
       else
@@ -91,44 +89,55 @@ class TopHeadlines::CLI
     puts "\n"
   end
 
-  def open_headline_in_browser
+  def all_headlines_open_in_browser
+    puts "Select source and headline number to open the full article in the browser. \n(e.g. 'cnn 3') \n\nAlternatively, #{request_input_full_menu.downcase}"
+    print "\nYOUR SELECTION: "
+    @num = gets.strip.upcase
+
+    while @num[-1].to_i.between?(1,5) && !num_included_in_menu_if_statements
+      source = @num[0...-1].strip.upcase
+      headline = @num.strip[-1].to_i
+
+      open_url(source, headline)
+
+      sleep(1)
+      puts "\nSelect another source and headline number to open full article in the browser. \n\nAlternatively, #{request_input_full_menu.downcase}"
+      print "\nYOUR SELECTION: "
+      @num = gets.strip.upcase
+    end
+
+    num_included_in_menu_if_statements ? @input = @num : invalid_entry
+    menu_if_statement
+  end
+
+  def headlines_from_source_open_in_browser
     puts "Select headline number to open the full article in the browser. \n\nAlternatively, #{request_input_full_menu.downcase}"
     print "\nYOUR SELECTION: "
     @num = gets.strip.upcase
-      while @num.to_i.between?(1,5) && !num_included_in_menu_if_statements
-        # if @input == "ALL"
-        #   @input == TopHeadlines::Source.all.keys[@num/3]
-        #   headline = TopHeadlines::Source.scrape_headlines(@input)[@num.to_i-1]
-        #   puts "=> Opening..."
 
-        #   sleep(2)
-        #   url = TopHeadlines::Source.scrape_urls(@input)[@num.to_i-1]
-        #   system("open", url)
-
-        #   sleep(1)
-        #   puts "\nSelect another headline number to open full article in the browser."
-        #   print "YOUR SELECTION: "
-        #   @num = gets.strip.upcase
-        #   @input = @num if @num == "EXIT"
-        # else
-          headline = TopHeadlines::Source.scrape_headlines(@input)[@num.to_i-1]
-          puts "\n=> You selected the #{@num.to_i.ordinalize} headline: '#{headline}'."
-          puts "=> Opening..."
-
-          sleep(2)
-          url = TopHeadlines::Source.scrape_urls(@input)[@num.to_i-1]
-          system("open", url)
-
-          sleep(1)
-          puts "\nSelect another headline number to open full article in the browser. \n\nAlternatively, #{request_input_full_menu.downcase}"
-          print "\nYOUR SELECTION: "
-          @num = gets.strip.upcase
-          @input = @num if num_included_in_menu_if_statements
-        # end
-      end
-    invalid_entry unless num_included_in_menu_if_statements
-    @input = @num if num_included_in_menu_if_statements
+    while @num.to_i.between?(1,5) && !num_included_in_menu_if_statements
+      open_url(@input, @num)
+      
+      sleep(1)
+      puts "\nSelect another headline number to open full article in the browser. \n\nAlternatively, #{request_input_full_menu.downcase}"
+      print "\nYOUR SELECTION: "
+      @num = gets.strip.upcase
+      
+      @input = @num if num_included_in_menu_if_statements
+    end
+      
+    num_included_in_menu_if_statements ? @input = @num : invalid_entry
     menu_if_statement
+  end
+
+  def open_url(source, number)
+    headline = TopHeadlines::Source.scrape_headlines(source)[number.to_i-1]
+    puts "\n=> You selected the #{number.to_i.ordinalize} headline: '#{headline}'."
+    puts "=> Opening..."
+
+    sleep(2)
+    url = TopHeadlines::Source.scrape_urls(source)[number.to_i-1]
+    url != nil ? system("open", url) : invalid_entry
   end
 
   def num_included_in_menu_if_statements
