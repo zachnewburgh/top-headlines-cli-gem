@@ -147,7 +147,7 @@ class TopHeadlines::Source
     child_selector = source[:child_selector]
     
     doc = Nokogiri::HTML(open(page_url))
-    page_url = page_url[0...-5] if page_url[-4...-1]+page_url[-1] == "news" ### BBC CORNER CASE
+    page_url = page_url[0...-5] if page_url[-4...-1]+page_url[-1] == "news" ### EDGE CASES (BBC & YAHOO)
     urls = doc.css(urls_selector).children.css(child_selector).map {|url| url.attribute('href').value[0] == 'h' ? url.attribute('href').value : page_url + url.attribute('href').value}
   end
 end

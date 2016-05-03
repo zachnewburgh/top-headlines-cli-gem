@@ -13,6 +13,11 @@ class TopHeadlines::CLI
     @input = nil
     while @input != "EXIT" && @num != "EXIT"
       @input = gets.strip.upcase 
+      menu_if_statement
+    end
+  end
+
+  def menu_if_statement
       if @input == "ALL"
         list_all_headlines_banner
         list_all_headlines
@@ -24,7 +29,7 @@ class TopHeadlines::CLI
         news_sources
         puts request_input_full_menu
         print "YOUR SELECTION: "
-      elsif TopHeadlines::Source.all.keys.include?(@input)
+      elsif source_includes?(@input)
         list_headlines_from_source
         open_headline_in_browser
       elsif @input != "EXIT"
@@ -32,7 +37,6 @@ class TopHeadlines::CLI
       else
         nil
       end
-    end
   end
 
   def welcome_banner
@@ -69,6 +73,10 @@ class TopHeadlines::CLI
     "Select a source, type 'sources' to view sources, type 'all' to view all headlines, or type 'exit' to exit."
   end
 
+  def source_includes?(input)
+    TopHeadlines::Source.all.keys.include?(input)
+  end
+
   def news_sources_banner
     puts "\n"
     puts "NEWS SOURCES"
@@ -84,10 +92,25 @@ class TopHeadlines::CLI
   end
 
   def open_headline_in_browser
-    puts "Select headline number to open the full article in the browser."
-    print "YOUR SELECTION: "
+    puts "Select headline number to open the full article in the browser. \n\nAlternatively, #{request_input_full_menu.downcase}"
+    print "\nYOUR SELECTION: "
     @num = gets.strip.upcase
-      while @num.to_i.between?(1,5)
+      while @num.to_i.between?(1,5) && !num_included_in_menu_if_statements
+        # if @input == "ALL"
+        #   @input == TopHeadlines::Source.all.keys[@num/3]
+        #   headline = TopHeadlines::Source.scrape_headlines(@input)[@num.to_i-1]
+        #   puts "=> Opening..."
+
+        #   sleep(2)
+        #   url = TopHeadlines::Source.scrape_urls(@input)[@num.to_i-1]
+        #   system("open", url)
+
+        #   sleep(1)
+        #   puts "\nSelect another headline number to open full article in the browser."
+        #   print "YOUR SELECTION: "
+        #   @num = gets.strip.upcase
+        #   @input = @num if @num == "EXIT"
+        # else
           headline = TopHeadlines::Source.scrape_headlines(@input)[@num.to_i-1]
           puts "\n=> You selected the #{@num.to_i.ordinalize} headline: '#{headline}'."
           puts "=> Opening..."
@@ -97,12 +120,19 @@ class TopHeadlines::CLI
           system("open", url)
 
           sleep(1)
-          puts "\nSelect another headline number to open full article in the browser."
-          print "YOUR SELECTION: "
+          puts "\nSelect another headline number to open full article in the browser. \n\nAlternatively, #{request_input_full_menu.downcase}"
+          print "\nYOUR SELECTION: "
           @num = gets.strip.upcase
-          @input = @num if @num == "EXIT"
+          @input = @num if num_included_in_menu_if_statements
+        # end
       end
-    invalid_entry unless @input == "EXIT"
+    invalid_entry unless num_included_in_menu_if_statements
+    @input = @num if num_included_in_menu_if_statements
+    menu_if_statement
+  end
+
+  def num_included_in_menu_if_statements
+    @num == "EXIT" || @num == "ALL" || @num == "SOURCES" || source_includes?(@num)
   end
 
   def invalid_entry
