@@ -10,7 +10,6 @@ class TopHeadlines::CLI
   def menu
     puts "Which source do you want to view? Alternatively, type 'all' to view all headlines or 'exit' to exit!"
     print "YOUR SELECTION: "
-    @input = nil
     while @input != "EXIT" && @num != "EXIT"
       @input = gets.strip.upcase 
       menu_if_statement
@@ -18,23 +17,23 @@ class TopHeadlines::CLI
   end
 
   def menu_if_statement
-      if @input == "ALL"
-        list_all_headlines_banner
-        list_all_headlines
-        all_headlines_open_in_browser
-      elsif @input == "SOURCES"
-        news_sources_banner
-        news_sources
-        puts request_input_full_menu
-        print "YOUR SELECTION: "
-      elsif source_includes?(@input)
-        list_headlines_from_source
-        headlines_from_source_open_in_browser
-      elsif @input != "EXIT"
-        invalid_entry
-      else
-        nil
-      end
+    if @input == "ALL"
+      list_all_headlines_banner
+      list_all_headlines
+      all_headlines_open_in_browser
+    elsif @input == "SOURCES"
+      news_sources_banner
+      news_sources
+      puts request_input_full_menu
+      print "YOUR SELECTION: "
+    elsif source_includes?(@input)
+      list_headlines_from_source
+      headlines_from_source_open_in_browser
+    elsif @input != "EXIT"
+      invalid_entry
+    else
+      nil
+    end
   end
 
   def welcome_banner
