@@ -3,8 +3,8 @@ class TopHeadlines::Source
   SOURCES = {
     "CNN" => {
       url: "http://www.cnn.com/",
-      headlines_selector: "div.column.zn__column--idx-1 span.cd__headline-text",
-      urls_selector: "div.column.zn__column--idx-1",
+      headlines_selector: ".cd__headline",
+      urls_selector: ".cd__headline",
       child_selector: "a"
       },
     "MSNBC" => {

@@ -94,7 +94,7 @@ class TopHeadlines::CLI
     print "\nYOUR SELECTION: "
     @num = gets.strip.upcase
 
-    while @num[-1].to_i.between?(1,5) && !num_included_in_menu_if_statements
+    while @num[-1].to_i.between?(1,5) && !num_included_in_menu_if_statement
       source = @num[0...-1].strip.upcase
       headline = @num.strip[-1].to_i
 
@@ -106,7 +106,7 @@ class TopHeadlines::CLI
       @num = gets.strip.upcase
     end
 
-    num_included_in_menu_if_statements ? @input = @num : invalid_entry
+    num_included_in_menu_if_statement ? @input = @num : invalid_entry
     menu_if_statement
   end
 
@@ -115,7 +115,7 @@ class TopHeadlines::CLI
     print "\nYOUR SELECTION: "
     @num = gets.strip.upcase
 
-    while @num.to_i.between?(1,5) && !num_included_in_menu_if_statements
+    while @num.to_i.between?(1,5) && !num_included_in_menu_if_statement
       open_url(@input, @num)
       
       sleep(1)
@@ -123,10 +123,10 @@ class TopHeadlines::CLI
       print "\nYOUR SELECTION: "
       @num = gets.strip.upcase
       
-      @input = @num if num_included_in_menu_if_statements
+      @input = @num if num_included_in_menu_if_statement
     end
       
-    num_included_in_menu_if_statements ? @input = @num : invalid_entry
+    num_included_in_menu_if_statement ? @input = @num : invalid_entry
     menu_if_statement
   end
 
@@ -140,7 +140,7 @@ class TopHeadlines::CLI
     url != nil ? system("open", url) : invalid_entry
   end
 
-  def num_included_in_menu_if_statements
+  def num_included_in_menu_if_statement
     @num == "EXIT" || @num == "ALL" || @num == "SOURCES" || source_includes?(@num)
   end
 
