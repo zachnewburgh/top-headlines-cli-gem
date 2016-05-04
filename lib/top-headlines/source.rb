@@ -97,6 +97,30 @@ class TopHeadlines::Source
       urls_selector: "h5.entry-title.node-title.title",
       child_selector: "a:first-child"
     }, 
+    "LE MONDE" => {
+      url: "http://www.lemonde.fr/",
+      headlines_selector: "div.titres_edito h1, h2", # NEEDS TO REMOVE '14' and '13' from beginning of 1st and 3rd headlines 
+      urls_selector: "div.titres_edito article",
+      child_selector: "a"
+    }, 
+    "INDEPENDENT UK" => {
+      url: "http://www.independent.co.uk",
+      headlines_selector: "h1:not(.box-title), h2",
+      urls_selector: "div.row[data-tb-region='row-2'] div.content h1, div.grid-mod-card-list ul li",
+      child_selector: "a"
+    }, 
+    "NPR" => {
+      url: "http://www.npr.org/",
+      headlines_selector: "article:not(.hp-item.attachment.volume-low) h1.title:first-child",
+      urls_selector: "section#main-section div.story-text",
+      child_selector: "a:nth-child(2)"
+    },
+    # "TELEGRAPH" => {
+    #   url: "http://www.telegraph.co.uk/",
+    #   headlines_selector: "main h3 a",
+    #   urls_selector: "main div[class*='list-of-entities'] h3", # NEED TO FIX LINKS
+    #   child_selector: "a:first-child"
+    # },     
     # "REUTERS" => {
     #   url: "http://www.reuters.com/news",
     #   headlines_selector: "div.column1.gridPanel.grid8 div.moduleBody :not(div.photo) a", # NEED TO ACCOUNT FOR :not(span a) at same level as a
