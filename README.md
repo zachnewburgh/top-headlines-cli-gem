@@ -20,6 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
+To use the gem, you'll need to `require 'top-headlines'`, instantiate a new TopHeadlines::CLI, and use the .call class method (e.g. `TopHeadlines::CLI.new.call`). You'll then be prompted by on-screen instructions.
+
 In lib/top-headlines/source.rb, users will find a SOURCES hash. Users may add their own favorite news sources to the hash, so that the gem dynamically scrapes even more headlines.
 ```
 If you'd like to view how I made the gem, here's a set of videos that captures almost all of it:

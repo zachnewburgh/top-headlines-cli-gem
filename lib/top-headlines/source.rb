@@ -160,7 +160,7 @@ class TopHeadlines::Source
 
     doc = Nokogiri::HTML(open(page_url))
 
-    headlines = doc.css(headlines_selector).map {|headline| headline.text.gsub("â", "'").gsub(/\n/,"").gsub(/\t/,"").strip}
+    headlines = doc.css(headlines_selector).map {|headline| headline.text.strip.gsub("â", "'").gsub(/\n/,"").gsub(/\t/,"").gsub(/\d+$/,"")}
   end
 
   def self.scrape_urls(source)
