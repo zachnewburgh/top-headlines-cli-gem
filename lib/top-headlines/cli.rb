@@ -32,7 +32,6 @@ class TopHeadlines::CLI
     elsif @input != "EXIT"
       invalid_entry
     else
-      nil
     end
   end
 

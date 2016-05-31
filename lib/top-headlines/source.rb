@@ -79,7 +79,7 @@ class TopHeadlines::Source
       urls_selector: "div.column--primary",  
       child_selector: "a.title-link"
     }, 
-    "THE DAILY BEAST" => {
+    "DAILY BEAST" => {
       url: "http://www.thedailybeast.com/",
       headlines_selector: "li.cheat h3",
       urls_selector: "li.cheat",  
@@ -87,8 +87,9 @@ class TopHeadlines::Source
     },
     "YAHOO" => {
       url: "https://www.yahoo.com/news",
-      headlines_selector: "div#mrt-node-Col1-1-WideHero h3",
-      urls_selector: "div#mrt-node-Col1-1-WideHero",
+      headlines_selector1: "div#mrt-node-Col1-1-WideHero h3",
+      headlines_selector: "div#item-0 ul li",
+      urls_selector: "div#item-0 ul li",
       child_selector: "a[class*='D(b)']"
     },  
     "AP" => {
@@ -97,7 +98,7 @@ class TopHeadlines::Source
       urls_selector: "h5.entry-title.node-title.title",
       child_selector: "a:first-child"
     }, 
-    "LE MONDE" => {
+    "MONDE" => {
       url: "http://www.lemonde.fr/",
       headlines_selector: "div.titres_edito h1, h2", # NEEDS TO REMOVE '14' and '13' from beginning of 1st and 3rd headlines 
       urls_selector: "div.titres_edito article",
