@@ -32,7 +32,7 @@ class TopHeadlines::Source
       child_selector: "a"
     },
     "GUARDIAN" => {
-      url: "http://www.theguardian.com/us",
+      url: "https://www.theguardian.com/us",
       headlines_selector: "section#headlines div.fc-container__inner div.fc-item__container a.u-faux-block-link__overlay.js-headline-text",
       urls_selector: "section#headlines div.fc-container__inner div.fc-item__container",
       child_selector: "a.u-faux-block-link__overlay.js-headline-text"
