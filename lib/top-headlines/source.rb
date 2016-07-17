@@ -39,8 +39,8 @@ class TopHeadlines::Source
     },
     "HUFF POST" => {
       url: "http://www.huffingtonpost.com/",
-      headlines_selector: "div#center_entries_container h2 a",
-      urls_selector: "div#center_entries_container h2",
+      headlines_selector: "h2[class*='js-card-headline']",
+      urls_selector: "h2[class*='js-card-headline']",
       child_selector: "a"
     },
     "FORBES" => {
