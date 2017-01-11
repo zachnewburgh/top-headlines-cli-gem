@@ -2,9 +2,9 @@ class TopHeadlines::Source
 
   SOURCES = {
     "CNN" => {
-      url: "http://www.cnn.com/",
+      url: "http://www.cnn.com/us",
       headlines_selector: ".cd__headline",
-      urls_selector: ".cd__headline",
+      urls_selector: "h3.cd__headline",
       child_selector: "a"
       },
     "MSNBC" => {
@@ -20,13 +20,13 @@ class TopHeadlines::Source
       child_selector: "a"
     },
     "NYTIMES" => {
-      url: "http://www.nytimes.com/",
+      url: "https://www.nytimes.com/",
       headlines_selector: "section#top-news h2.story-heading a",
       urls_selector: "section#top-news h2.story-heading",
       child_selector: "a"
     },
     "BLOOMBERG" => {
-      url: "http://www.bloomberg.com/",
+      url: "https://www.bloomberg.com/",
       headlines_selector: "section.top-news-v3 h1 a",
       urls_selector: "section.top-news-v3 h1",
       child_selector: "a"
@@ -62,7 +62,7 @@ class TopHeadlines::Source
       child_selector: "a"
     },
     "FIVETHIRTYEIGHT" => {
-      url: "http://fivethirtyeight.com/",
+      url: "https://fivethirtyeight.com/",
       headlines_selector: "div#primary h3 a",
       urls_selector: "div#primary h3",
       child_selector: "a"
@@ -171,7 +171,10 @@ class TopHeadlines::Source
     child_selector = source[:child_selector]
     
     doc = Nokogiri::HTML(open(page_url))
+
     page_url = page_url[0...-5] if page_url[-4...-1]+page_url[-1] == "news" ### EDGE CASES (BBC & YAHOO)
+    page_url = "http://www.cnn.com/" if page_url.include?("www.cnn.com") ### EDGE CASE (CNN)
+
     urls = doc.css(urls_selector).children.css(child_selector).map {|url| url.attribute('href').value[0] == 'h' ? url.attribute('href').value : page_url + url.attribute('href').value}
   end
 end
