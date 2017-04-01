@@ -43,12 +43,12 @@ class TopHeadlines::Source
       urls_selector: "h2[class*='js-card-headline']",
       child_selector: "a"
     },
-    "FORBES" => {
-      url: "https://www.forbes.com/",
-      headlines_selector: "h4",
-      urls_selector: "h4",
-      child_selector: "a"
-    },   
+    # "FORBES" => {
+    #   url: "https://www.forbes.com/",
+    #   headlines_selector: "h2 span",
+    #   urls_selector: "div[class*='related-articles ng-scope']",
+    #   child_selector: "a"
+    # },   
     "WSJ" => {
       url: "https://www.wsj.com/",
       headlines_selector: "a.wsj-headline-link",
