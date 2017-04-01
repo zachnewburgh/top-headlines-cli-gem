@@ -44,13 +44,13 @@ class TopHeadlines::Source
       child_selector: "a"
     },
     "FORBES" => {
-      url: "http://www.forbes.com/",
+      url: "https://www.forbes.com/",
       headlines_selector: "h4",
       urls_selector: "h4",
       child_selector: "a"
     },   
     "WSJ" => {
-      url: "http://www.wsj.com/",
+      url: "https://www.wsj.com/",
       headlines_selector: "a.wsj-headline-link",
       urls_selector: "div.cb-col",
       child_selector: "a.wsj-headline-link"
